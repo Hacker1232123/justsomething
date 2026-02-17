@@ -1,0 +1,21 @@
+appId: com.privatechess.desktop
+productName: Private Chess
+directories:
+  output: release
+files:
+  - dist/**
+  - dist-electron/**
+  - package.json
+asar: true
+mac:
+  category: public.app-category.games
+  target:
+    - dmg
+win:
+  signAndEditExecutable: false
+  target:
+    - nsis
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true

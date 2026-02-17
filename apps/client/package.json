@@ -1,0 +1,41 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist-electron/main.cjs",
+  "description": "Private Chess desktop client.",
+  "author": "Private Chess",
+  "scripts": {
+    "dev:renderer": "vite",
+    "dev:electron": "corepack pnpm build:electron && wait-on tcp:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 node scripts/launch-electron.cjs",
+    "dev": "concurrently -k \"corepack pnpm dev:renderer\" \"corepack pnpm dev:electron\"",
+    "build:renderer": "vite build",
+    "build:electron": "tsup electron/main.ts electron/preload.ts --format cjs --out-dir dist-electron --clean --target node20 --external electron",
+    "build": "corepack pnpm build:renderer && corepack pnpm build:electron && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --config electron-builder.yml",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "chess.js": "^1.2.0",
+    "react": "^18.3.1",
+    "react-chessboard": "^4.7.3",
+    "react-dom": "^18.3.1",
+    "shared": "workspace:*",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
+    "electron": "^34.0.2",
+    "electron-builder": "^25.1.8",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.5",
+    "vitest": "^2.1.8",
+    "wait-on": "^8.0.1"
+  }
+}

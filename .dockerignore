@@ -1,0 +1,9 @@
+node_modules
+**/node_modules
+apps/client/dist
+apps/client/dist-electron
+apps/client/release
+apps/server/dist
+.git
+.gitignore
+*.log

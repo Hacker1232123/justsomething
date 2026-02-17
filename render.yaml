@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: private-chess-server
+    env: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: INVITE_BASE_URL
+        value: https://your-client-app.example.com

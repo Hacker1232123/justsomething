@@ -1,0 +1,15 @@
+{
+  "name": "private-chess-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "concurrently -k -n server,client \"corepack pnpm --filter server dev\" \"corepack pnpm --filter client dev\"",
+    "test": "corepack pnpm --filter shared test && corepack pnpm --filter server test && corepack pnpm --filter client test",
+    "build": "corepack pnpm --filter shared build && corepack pnpm --filter server build && corepack pnpm --filter client build",
+    "generate:sounds": "node scripts/generate-sounds.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
