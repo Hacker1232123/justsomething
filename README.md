@@ -72,6 +72,17 @@ Installer outputs:
 
 Note: build each OS installer on that OS for best results.
 
+## Mac download link via GitHub Actions
+
+If you are on Windows and need a macOS installer link:
+
+1. Push this repo to GitHub.
+2. Open GitHub -> `Actions` -> `macOS Release` -> `Run workflow`.
+3. Optionally set a tag (for example `v1.0.1`), then run.
+4. After success, open the created GitHub `Release` and copy the `.dmg` URL.
+
+That `.dmg` link is the install link to send to Mac users.
+
 ## Local LAN setup
 
 1. Start server:
