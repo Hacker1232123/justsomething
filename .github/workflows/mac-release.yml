@@ -1,6 +1,9 @@
 name: macOS Release
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       tag:
@@ -59,13 +62,21 @@ jobs:
         run: |
           corepack pnpm build:renderer
           corepack pnpm build:electron
-          npx electron-builder --mac dmg --config electron-builder.yml --publish never
+          npx electron-builder --mac dmg zip --config electron-builder.yml --publish never
+
+      - name: Generate checksums
+        shell: bash
+        run: |
+          shasum -a 256 apps/client/release/*.dmg apps/client/release/*.zip > apps/client/release/SHA256SUMS.txt
 
       - name: Upload DMG artifact
         uses: actions/upload-artifact@v4
         with:
-          name: private-chess-mac-dmg
-          path: apps/client/release/*.dmg
+          name: private-chess-mac-build
+          path: |
+            apps/client/release/*.dmg
+            apps/client/release/*.zip
+            apps/client/release/SHA256SUMS.txt
           if-no-files-found: error
 
       - name: Publish GitHub release
@@ -75,3 +86,5 @@ jobs:
           generate_release_notes: true
           files: |
             apps/client/release/*.dmg
+            apps/client/release/*.zip
+            apps/client/release/SHA256SUMS.txt

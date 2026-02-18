@@ -77,11 +77,12 @@ Note: build each OS installer on that OS for best results.
 If you are on Windows and need a macOS installer link:
 
 1. Push this repo to GitHub.
-2. Open GitHub -> `Actions` -> `macOS Release` -> `Run workflow`.
-3. Optionally set a tag (for example `v1.0.1`), then run.
-4. After success, open the created GitHub `Release` and copy the `.dmg` URL.
+2. A new push to `main` now auto-builds a fresh mac release.
+3. You can also run manually in GitHub -> `Actions` -> `macOS Release` -> `Run workflow`.
+4. After success, open the created GitHub `Release` and copy the `.dmg` or `.zip` URL.
+5. `SHA256SUMS.txt` is included in the release to verify download integrity.
 
-That `.dmg` link is the install link to send to Mac users.
+That release asset link is what you send to Mac users.
 
 ## Local LAN setup
 
